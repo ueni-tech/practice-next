@@ -1,6 +1,15 @@
-const IncompleteTodos = ({incompleteTodos, onClickComplete, onClickDelete}) => {
+const style = {
+  border: "2px solid #aacfd0",
+  width: "400px",
+  "min-height": "200px",
+  padding: "8px",
+  margin: "8px",
+  "border-radius": "8px"
+}
+
+const IncompleteTodos = ({ incompleteTodos, onClickComplete, onClickDelete }) => {
   return (
-    <div className="incomplete-area">
+    <div style={style}>
       <p className="title">未完了のtodo</p>
       <ul>
         {incompleteTodos.map((incompleteTodo, index) => (
