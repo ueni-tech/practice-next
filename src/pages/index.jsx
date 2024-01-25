@@ -1,3 +1,6 @@
+import CompleteTodos from "@/components/CompleteTodos";
+import IncompleteTodos from "@/components/IncompleteTodos";
+import InputTodo from "@/components/InputTodo";
 import { useState } from "react"
 
 export default function Home() {
@@ -25,7 +28,7 @@ export default function Home() {
     newIncompleteTodos.splice(index, 1);
 
     const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
-    
+
     setIncompleteTodos(newIncompleteTodos);
     setCompleteTodos(newCompleteTodos);
   }
@@ -40,42 +43,25 @@ export default function Home() {
     setIncompleteTodos(newIncompleteTodos);
   }
 
-  
+
   return (
     <>
-      <div className="input-area">
-        <input type="text" placeholder="todoを入力" value={todoText} onChange={ e => onChangeTodoText(e)} />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChangeTodoText={onChangeTodoText}
+        onClickAdd={onClickAdd}
+      />
 
-      <div className="incomplete-area">
-        <p className="title">未完了のtodo</p>
-        <ul>
-          {incompleteTodos.map((incompleteTodo, index) => (
-            <li key={incompleteTodo}>
-              <div className="list-row">
-                <p className="todo-item">{incompleteTodo}</p>
-                <button onClick={() => onClickComplete(index)}>完了</button>
-                <button onClick={() => onClickDelete(index)}>削除</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <IncompleteTodos
+        incompleteTodos={incompleteTodos}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+      />
 
-      <div className="complete-area">
-        <p className="title">完了のtodo</p>
-        <ul>
-          {completeTodos.map((completeTodo, index) => (
-            <li key={completeTodo}>
-              <div className="list-row">
-                <p className="todo-item">{completeTodo}</p>
-                <button onClick={() => onClickBack(index)}>戻す</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CompleteTodos
+        completeTodos={completeTodos}
+        onClickBack={onClickBack}
+      />
     </>
   )
 }
