@@ -7,11 +7,11 @@ const style = {
   "border-radius": "8px",
 }
 
-const InputTodo = ({ todoText, onChangeTodoText, onClickAdd }) => {
+const InputTodo = ({ todoText, onChangeTodoText, onClickAdd, disabled }) => {
   return (
     <div style={style}>
-      <input type="text" placeholder="todoを入力" value={todoText} onChange={e => onChangeTodoText(e)} />
-      <button onClick={onClickAdd}>追加</button>
+      <input disabled={disabled} type="text" placeholder="todoを入力" value={todoText} onChange={e => onChangeTodoText(e)} />
+      <button disabled={disabled} onClick={onClickAdd}>追加</button>
     </div>
   )
 }

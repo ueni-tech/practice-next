@@ -43,6 +43,8 @@ export default function Home() {
     setIncompleteTodos(newIncompleteTodos);
   }
 
+  const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
+
 
   return (
     <>
@@ -50,7 +52,13 @@ export default function Home() {
         todoText={todoText}
         onChangeTodoText={onChangeTodoText}
         onClickAdd={onClickAdd}
+        disabled={isMaxLimitIncompleteTodos}
       />
+      {isMaxLimitIncompleteTodos && (
+      <p style={{ color: "red" }}>
+        todoの登録は5個までです
+      </p>
+      )}
 
       <IncompleteTodos
         incompleteTodos={incompleteTodos}
